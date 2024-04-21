@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <!-- Contenu spécifique de la page d'accueil -->
+    <h1>Bienvenue sur notre site de e-commerce !</h1>
+    <!-- Mettez ici le contenu de votre page d'accueil -->
+
+    <!-- Produits en vedette -->
+    <div class="featured-products">
+        <a href="{{ path('app_product_index') }}">See all the product</a>
+        <h2>Produits en vedette</h2>
+        <div class="product-list">
+            {% for product in featured_products %}
+                <div class="product">
+                    <a class="product-link" href="{{ path('app_product_show', {'id': product.id}) }}">
+                        {% if product.Media.toArray | length %}
+                            <img src="{{ product.Media.toArray[0].Path }}" alt="{{ product.name }}">
+                        {% endif %}
+                        <h3>{{ product.name }}</h3>
+                        <p>{{ product.description }}</p>
+                        <p>Prix : {{ product.PriceHT }}€</p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Catégories de produits -->
+    <div class="product-categories">
+        <h2>Catégories de produits</h2>
+        <div class="category-list">
+            {% for category in categories %}
+                <div class="category">
+                    {% if category.Media.toArray | length %}
+                    <img src="{{ category.Media.toArray[0].Path }}" alt="{{ category.name }}">
+                    {% endif %}
+                    <h3>{{ category.name }}</h3>
+                    <a href="{{ path('products_in_category', {'id': category.id}) }}">Voir produits</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

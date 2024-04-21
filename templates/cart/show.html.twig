@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+    <h1>Cart</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cart.id }}</td>
+            </tr>
+            {% set sum = 0 %}
+            {% for cartLine in cart.CartLine %}
+                <tr>
+{#                    <th>{% if product.Media %} <img src="{{ product.Media.getPath }}" alt="{{ product.name }}"> {% endif %}</th>#}
+                    <th><p>{{ cartLine.id }}</p></th>
+                    <th><p>{{ cartLine.product.name }}</p></th>
+                    <th>{{ cartLine.product.PriceHT }}€</th>
+                    <th>
+                        <form method="post" action="{{ path('app_cart_line_add', {'id': cartLine.id}) }}">
+                            <button class="btn">+</button>
+                        </form>
+                        {{ cartLine.Quantity }}
+
+                        <form method="post" action="{{ path('app_cart_line_remove', {'id': cartLine.id}) }}">
+                            <button class="btn" {% if cartLine.Quantity == 1 %} disabled {% endif %}>-</button>
+                        </form>
+                    </th>
+                    <th>
+                        :: {{ cartLine.Quantity * cartLine.product.PriceHT }}€
+                        {% set sum = sum + cartLine.Quantity * cartLine.product.PriceHT %}
+                    </th>
+                    <th>
+                        <form method="post" action="{{ path('app_cart_line_delete', {'id': cartLine.id}) }}"
+                              onsubmit="return confirm('Are you sure you want to delete this item?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cartLine.id) }}">
+                            <button class="btn">Delete</button>
+                        </form>
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="6">
+                        {{ sum }}€
+                    </th>
+                </tr>
+            {% else %}
+                <p>Empty Cart</p>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{#    <a href="{{ path('app_cart_index') }}">back to list</a>#}
+
+{#    <a href="{{ path('app_cart_edit', {'id': cart.id}) }}">edit</a>#}
+
+{#    {{ include('cart/_delete_form.html.twig') }}#}
+{% endblock %}

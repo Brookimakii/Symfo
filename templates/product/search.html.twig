@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block content %}
+    <h1>Résultats de la recherche pour "{{ query }}" :</h1>
+    {% if products is empty %}
+    <p>Aucun résultat trouvé.</p>
+    {% else %}
+    <h2>Product index</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>PriceHT</th>
+                <th>Available</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+
+                <tr>
+                    <td><a href="{{ path('app_product_show', {'id': product.id}) }}">{{ product.id }}</a></td>
+                    <td><a href="{{ path('app_product_show', {'id': product.id}) }}">{{ product.Name }}</a></td>
+                    <td><a href="{{ path('app_product_show', {'id': product.id}) }}">{{ product.Description }}</a></td>
+                    <td><a href="{{ path('app_product_show', {'id': product.id}) }}">{{ product.PriceHT }}</a></td>
+                    <td>
+                        <a href="{{ path('app_product_show', {'id': product.id}) }}">{{ product.Available ? 'Yes' : 'No' }}</a>
+                    </td>
+
+                </tr>
+
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+{% endblock %}

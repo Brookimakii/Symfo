@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        <!-- Inclure vos feuilles de style CSS ici -->
+    </head>
+    <body>
+        <!-- Inclure l'en-tête -->
+        {% include 'header.html.twig' %}
+
+        <!-- Contenu spécifique à chaque page -->
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+
+        <!-- Inclure le pied de page -->
+        {% include 'footer.html.twig' %}
+
+        <!-- Inclure vos scripts JavaScript ici -->
+    </body>
+</html>

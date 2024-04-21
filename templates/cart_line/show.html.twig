@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CartLine{% endblock %}
+
+{% block body %}
+    <h1>CartLine</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cart_line.id }}</td>
+            </tr>
+            <tr>
+                <th>Quantity</th>
+                <td>{{ cart_line.Quantity }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cart_line_index') }}">back to list</a>
+
+    <a href="{{ path('app_cart_line_edit', {'id': cart_line.id}) }}">edit</a>
+
+    {{ include('cart_line/_delete_form.html.twig') }}
+{% endblock %}

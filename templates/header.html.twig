@@ -1,0 +1,26 @@
+<header>
+    <form action="{{ path('app_product_search') }}" method="get">
+        <input type="text" name="q" placeholder="Rechercher un produit...">
+        <button type="submit">Rechercher</button>
+    </form>
+    <nav>
+        <!-- Mettez ici vos liens de navigation -->
+        <ul>
+            <li><a href="{{ path('app_home') }}">Accueil</a></li>
+            <!-- Ajoutez un bouton de connexion -->
+            {% if app.user %}
+                <li><a href="{{ path('app_user_index') }}">Profile</a></li>
+                <li><a href="{{ path('app_cart_index') }}">Cart</a></li>
+                <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                {% if 'ROLE_ADMIN' in app.user.roles %}---
+                    <li><a href="{{ path('app_admin_user_index') }}">Manage Users</a></li>
+                    <li><a href="{{ path('app_admin_product_index') }}">Manage Products</a></li>
+                    <li><a href="{{ path('app_admin_category_index') }}">Manage Categories</a></li>
+                {% endif %}
+            {% else %}
+                <li><a href="{{ path('app_login') }}">Connexion</a></li>
+                <li><a href="{{ path('app_register') }}">Créer un compte</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
