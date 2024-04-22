@@ -1,44 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product{% endblock %}
+{% block title %}Product Manager{% endblock %}
 
 {% block content %}
-    <h1>Product</h1>
+    <h1>Product index</h1>
 
     <table class="table">
-        <tbody>
+        <thead>
             <tr>
                 <th>Id</th>
-                <td>{{ product.id }}</td>
-            </tr>
-            <tr>
                 <th>Name</th>
-                <td>{{ product.Name }}</td>
-            </tr>
-            <tr>
                 <th>Description</th>
-                <td>{{ product.Description }}</td>
-            </tr>
-            <tr>
                 <th>PriceHT</th>
-                <td>{{ product.PriceHT }}</td>
-            </tr>
-            <tr>
                 <th>Available</th>
-                <td>{{ product.Available ? 'Yes' : 'No' }}</td>
+                <th>actions</th>
             </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+
+                <tr>
+                    <td><a href="{{ path('app_product_show', {'id': product.id}) }}">{{ product.id }}</a></td>
+                    <td><a href="{{ path('app_product_show', {'id': product.id}) }}">{{ product.Name }}</a></td>
+                    <td><a href="{{ path('app_product_show', {'id': product.id}) }}">{{ product.Description }}</a></td>
+                    <td><a href="{{ path('app_product_show', {'id': product.id}) }}">{{ product.PriceHT }}</a></td>
+                    <td>
+                        <a href="{{ path('app_product_show', {'id': product.id}) }}">{{ product.Available ? 'Yes' : 'No' }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+                        <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                    </td>
+
+                </tr>
+
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
-
-    <form action="{{ path('add_to_cart', {'id': product.id}) }}" method="post">
-        <input type="number" name="quantity" value=1 min="1"/>
-        <input type="text" name="redirect_url" hidden="hidden" value="{{ app.request.attributes.get('_route') }}">
-        <button type="submit">Ajouter au Panier</button>
-    </form>
-
-    <a href="{{ path('app_product_index') }}">back to list</a>
-
-    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
-
-    {{ include('product/_delete_form.html.twig') }}
+    <a href="{{ path('app_product_new') }}">Create new</a>
 {% endblock %}

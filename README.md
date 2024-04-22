@@ -16,8 +16,8 @@
 |:---------------------------------------------------------------------------------------------|:--------------------------:|
 | Login (connexion)                                                                            | <div class="lv1">OK</div>  |
 | Inscription                                                                                  | <div class="lv1">OK</div>  |
-| Parcours par catégorie                                                                       | <div class="lv2">NOK</div> |
-| Parcours des articles                                                                        | <div class="lv2">NOK</div> |
+| Parcours par catégorie                                                                       | <div class="lv1">OK</div>  |
+| Parcours des articles                                                                        | <div class="lv1">OK</div>  |
 | Mise au panier                                                                               | <div class="lv1">OK</div>  |
 | Ajustement des quantités au panier avec le prix total                                        | <div class="lv1">OK</div>  |
 | Message de commande faite                                                                    | <div class="lv2">NOK</div> |

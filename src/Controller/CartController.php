@@ -120,7 +120,7 @@
 			return $this->redirect($request->headers->get('referer'));
 		}
 
-		#[Route('/checkout/', name: 'add_to_cart', methods: ['POST'])]
+		#[Route('/checkout/', name: 'app_checkout', methods: ['POST'])]
 		public function checkout(Request $request, CartRepository $cartRepository, OrderRepository $orderRepository, CommandLineRepository $commandLineRepository, EntityManagerInterface $entityManager): Response {
 			$user = $this->getUser();
 			$cart = $cartRepository->findCartByUser($user);

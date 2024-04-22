@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="3ce09559-83fb-4b53-b85f-1bc84b268428" name="Alwaysdata" url="http://ftp-thomiaskenzo.alwaysdata.net">
+        <fileTransfer host="ftp-thomiaskenzo.alwaysdata.net" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
